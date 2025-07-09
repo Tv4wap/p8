@@ -51,7 +51,7 @@ const container = document.querySelector('.shaka-video-container');
   
   await player.attach(video);
 
-  const ui = new shaka.ui.Overlay(player, container, video);
+  const ui = new shaka.ui.Overlay(video);
   
   // Custom UI configuration with seek bar colors
   const config = {
