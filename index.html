@@ -50,31 +50,26 @@ const container = document.querySelector('.shaka-video-container');
   
   await player.attach(video);
 
-  const ui = new shaka.ui.Overlay(video);
   
-  // Custom UI configuration with seek bar colors
-  const config = {
-    'seekBarColors': {
-      base: 'rgba(255,255,255,.2)',
-      buffered: 'rgba(255,255,255,.4)',
-      played: 'rgb(255,0,0)',
-    },
-    'controlPanelElements': [
-      'play_pause',
-      'time_and_duration',
-      'mute',
-      'volume',
-      'spacer',
-      'captions',
-      'quality',
-      'language',
-      'picture_in_picture',
-      'fullscreen', 
-      'overflow_menu'
-    ]
-  };
-  
-  ui.configure(config);
+            
+            const ui = new shaka.ui.Overlay(player, container, video);
+
+            const config = {
+                controlPanelElements: [
+                    'play_pause',
+                    'time_and_duration',
+                    'mute',
+                    
+                    'spacer',
+                    'captions',
+                    'quality',
+                    
+                    'picture_in_picture',
+                    'fullscreen',
+                    'overflow_menu'
+                ]
+            };
+            ui.configure(config);
   const controls = ui.getControls();
 
   // Optimized player configuration
