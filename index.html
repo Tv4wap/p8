@@ -103,7 +103,8 @@ default: 224
 
         // Set video properties for autoplay
         video.autoplay = true;
-        video.controls = true;
+        video.controls = false;
+        ui.getControls = true;
         video.volume = 1;
         video.muted = false;
         video.preload = 'auto';
