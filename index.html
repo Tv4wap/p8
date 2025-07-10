@@ -412,7 +412,7 @@ const queryParams = new URLSearchParams(window.location.search);
     const video = document.getElementById('video');
 
 
-const container = document.querySelector('.shaka-video-container');
+
 
     async function initializePlayer() {
       try {
@@ -421,7 +421,7 @@ const container = document.querySelector('.shaka-video-container');
   
   await player.attach(video);
 
-  
+  const container = document.querySelector('.shaka-video-container');
             
             const ui = new shaka.ui.Overlay(player, container, video);
 
@@ -543,135 +543,8 @@ default: 224
       });
     });
 
-    // Keyboard controls
-    document.addEventListener('keydown', event => {
-      if (!video) return;
-
-      switch (event.code) {
-        case 'Space':
-          event.preventDefault();
-          video.paused ? video.play() : video.pause();
-          break;
-        case 'ArrowUp':
-          event.preventDefault();
-          video.volume = Math.min(video.volume + 0.1, 1);
-          break;
-        case 'ArrowDown':
-          event.preventDefault();
-          video.volume = Math.max(video.volume - 0.1, 0);
-          break;
-        case 'KeyF':
-          if (document.fullscreenElement) {
-            document.exitFullscreen();
-          } else {
-            video.requestFullscreen();
-          }
-          break;
-        case 'KeyM':
-          video.muted = !video.muted;
-          break;
-      }
-    });
+    
 
 </script>
     
-  <head>
-  <meta charset="UTF-8">
-  <title>mxon sports</title>
-  <meta name="referrer" content="no-referrer">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <link rel="shortcut icon" href="https://raw.githubusercontent.com/sultanarabi161/files/refs/heads/main/image/mxonlive_logo.webp">
-  <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.13.3/dist/shaka-player.ui.min.js"></script>
-
-  <style type="text/css">
-      body {
-        margin: 0;
-        padding: 20px;
-        background-color: #0f0f0f;
-        color: #fff;
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
-      }
-
-      .video-container {
-        position: relative;
-        width: 100%;
-        max-width: 1280px;
-        aspect-ratio: 16/9;
-        background-color: #000;
-        border-radius: 3px;
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      }
-
-      video {
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        display: block;
-      }
-
-      .video-watermark {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        width: 40px;
-        height: 40px;
-        opacity: 0.7;
-        z-index: 1000;
-        pointer-events: none;
-      }
-
-      @media (max-width: 768px) {
-        body {
-          padding: 10px;
-        }
-        
-        .video-container {
-          max-width: 100%;
-        }
-        
-        .video-watermark {
-          width: 30px;
-          height: 30px;
-          top: 10px;
-          left: 10px;
-        }
-      }
-
-      @media (min-width: 769px) and (max-width: 1024px) {
-        .video-container {
-          max-width: 854px;
-        }
-      }
-  </style>
-  </head>  
-    
-  
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+          
