@@ -7,51 +7,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.0/shaka-player.ui.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.0/controls.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
-  <style>
+  
 
-      .video-container {
-        position: absolute ;
-        width: 100%;height:100%;
-        aspect-ratio: 16/9;
-        background-color: #000;
-        border-radius: 1px;
-        overflow: hidden;
-        box-shadow: 0 4px 2px rgba(0,0,0,0.5);
-      }
 
-      .shaka-video-container {
-        position: absolute ;
-        width: 100%;height:100%;
-        
-        
-      }
-
-      
-
-      
-
-      @media (max-width: 768px) {
-      
-        .video-container {
-          max-width: 100%;height:100%
-        }
-        
-        
-      
-
-      
-
-      
-          * { margin: 0; padding: 0; box-sizing: border-box; }
-
+      <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       background: #000;
-      height: 100%;
-      width: 100%;
+      height: 100vh;
+      width: 100vw;
       overflow: hidden;
-      
+      font-family: system-ui, -apple-system, sans-serif;
     }
-    
+    .shaka-video-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      object-fit: contain;
+    }
+
     /* YouTube Theme CSS */
     @font-face {
       font-family: 'Roboto';
@@ -94,7 +74,7 @@
       -webkit-box-ordinal-group: 3;
           -ms-flex-order: 2;
               order: 2;
-      height: 60px;
+      height: 50px;
       padding: 0 10px;
     }
     .youtube-theme .shaka-range-container {
@@ -384,9 +364,7 @@
       background: rgba(255, 0, 0, 0.8);
       transform: translate(-50%, -50%) scale(1.05);
     }
-  </style>
-
-    
+                       </style>
   
   
 
@@ -481,7 +459,14 @@ default: 224
     }
   });  
 
-        
+        // Set up network adapter for authorization
+        const networkingEngine = player.getNetworkingEngine();
+        networkingEngine.clearAllRequestFilters();
+        networkingEngine.registerRequestFilter((type, request) => {
+          if (channelstreamInfo.authBearer) {
+            request.headers['Authorization'] = `Bearer ${channelstreamInfo.authBearer}`;
+          }
+        });
 
         // Set video properties for autoplay
         video.autoplay = true;
@@ -547,4 +532,4 @@ default: 224
 
     
 
-                </script>
+            </script>
