@@ -27,7 +27,7 @@ const queryParams = new URLSearchParams(window.location.search);
     const video = document.getElementById('video');
 
 
-const container = document.querySelector('.shaka-video-container');
+
 
     async function initializePlayer() {
       try {
@@ -35,7 +35,7 @@ const container = document.querySelector('.shaka-video-container');
         player = new shaka.Player();
   
   await player.attach(video);
-
+const container = document.querySelector('.shaka-video-container');
   const ui = new shaka.ui.Overlay(player, container, video);
   
   // Custom UI configuration with seek bar colors
