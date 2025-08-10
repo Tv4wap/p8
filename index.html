@@ -1,6 +1,7 @@
+
 <div class="shaka-video-container youtube-theme" >
   <video autoplay muted playsinline preload="auto"></video>
-  
+  <div class="manual-play-button" id="manualPlayButton">
     
   </div>
 </div>
@@ -17,8 +18,9 @@ function getUrlParam(name) {
             return null; 
         }
 
-        var url= getUrlParam('url');
-        
+        var mpd = getUrlParam('url');
+        var keyId = getUrlParam('keyId');
+        var key = getUrlParam('key');
         
         
 
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const video = document.querySelector('video');
   const player = new shaka.Player();
   
-
+const manualPlayButton = document.getElementById('manualPlayButton');
   
   await player.attach(video);
 const container = document.querySelector('.shaka-video-container');
@@ -65,7 +67,13 @@ const container = document.querySelector('.shaka-video-container');
   ui.configure(config);
 
 
- 
+ player.configure({  
+                            drm: {  
+                                clearKeys: {  
+                                    [keyId]: key  
+                                }  
+                            }  
+                        });  
     
   const controls = ui.getControls();
 
@@ -188,8 +196,8 @@ const container = document.querySelector('.shaka-video-container');
 
   // Load stream and setup autoplay
   try {
-    console.log('Loading stream:','https://live-dangal.akamaized.net/liveabr/playlist.m3u8');
-    await player.load('https://live-dangal.akamaized.net/liveabr/playlist.m3u8');
+    console.log('Loading stream:', mpd);
+    await player.load(mpd);
 
 
     
@@ -605,3 +613,4 @@ const container = document.querySelector('.shaka-video-container');
       transform: translate(-50%, -50%) scale(1.05);
     }
   </style>
+
