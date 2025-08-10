@@ -1,6 +1,6 @@
 <div class="shaka-video-container youtube-theme" >
   <video autoplay muted playsinline preload="auto"></video>
-  <div class="manual-play-button" id="manualPlayButton">
+  
     
   </div>
 </div>
@@ -18,8 +18,7 @@ function getUrlParam(name) {
         }
 
         var mpd = getUrlParam('url');
-        var keyId = getUrlParam('keyId');
-        var key = getUrlParam('key');
+        
         
         
 
@@ -66,13 +65,7 @@ const container = document.querySelector('.shaka-video-container');
   ui.configure(config);
 
 
- player.configure({  
-                            drm: {  
-                                clearKeys: {  
-                                    [keyId]: key  
-                                }  
-                            }  
-                        });  
+ 
     
   const controls = ui.getControls();
 
