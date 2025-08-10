@@ -17,7 +17,7 @@ function getUrlParam(name) {
             return null; 
         }
 
-        var mpd = getUrlParam('url');
+        var url = getUrlParam('url');
         
         
         
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const video = document.querySelector('video');
   const player = new shaka.Player();
   
-const manualPlayButton = document.getElementById('manualPlayButton');
+
   
   await player.attach(video);
 const container = document.querySelector('.shaka-video-container');
